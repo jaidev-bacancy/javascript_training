@@ -1,3 +1,4 @@
+console.log("######################### Problem - 1 #########################"); 
 const registry = {
     active: [{ id: 1, name: "Alpha" }],
     archived: []
@@ -35,6 +36,45 @@ console.log(registry.active.length); // Shallow copy : 2 ---- Deep copy : 1
 console.log(registry.active[0].name); // Shallow copy : Gamma ---- Deep copy : Alpha
 console.log(registry.version);       // Shallow and Deep copy : undefined
 
+
+console.log("######################### Problem - 2 #########################"); 
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.eat = function() {
+  console.log(`${this.name} is eating.`);
+};
+
+function Dog(name, breed) {
+  Animal.call(this, name);
+  this.breed = breed;
+}
+
+// Intent: Dog should inherit from Animal
+/*
+We made both constructors point to the same object in memory.
+Hence bark() was added to the Animal.prototype
+We also stole the identity of Dog, which resulted in 'Animal' for myDog.constructor.name
+*/
+// Dog.prototype = Animal.prototype;
+
+// Correct way to do inheritance
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {
+  console.log("Woof!");
+};
+
+const myDog = new Dog("Buddy", "Golden");
+const genericAnimal = new Animal("Generic");
+
+// genericAnimal.bark(); // throws after doing inheritance the correct way. Animal should not have its Child method.
+console.log(myDog.constructor.name);
+
+
+console.log("######################### Problem - 3 #########################"); 
 function SmartPhone(brand) {
   this.brand = brand;
   
@@ -50,5 +90,22 @@ SmartPhone.prototype.getBrand = function() {
 
 const myPhone = new SmartPhone("Apple");
 
+/*
+By default Javascript does :
+1. Creates an empty object {}
+2. Links it to SmartPhone.prototype
+3. Sets 'this' to that object
+4. Returns that object
+
+In the constructor of Smartphone we are returning an object with 'brand':'Generic' and 'os':'Android'
+Hence, Javascript throws away its object and return this 'Generic' object.
+With the Generic object as return object, we get:
+=> Generic
+=> undefined
+*/
+
+/*
+After removing the return object
+*/
 console.log(myPhone.brand);    // Apple
-console.log(myPhone.getBrand); // Apple
+console.log(myPhone.getBrand); // [Function (anonymous)]
