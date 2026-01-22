@@ -34,3 +34,21 @@ const newRegistry = cloneAndModify(registry);
 console.log(registry.active.length); // Shallow copy : 2 ---- Deep copy : 1 
 console.log(registry.active[0].name); // Shallow copy : Gamma ---- Deep copy : Alpha
 console.log(registry.version);       // Shallow and Deep copy : undefined
+
+function SmartPhone(brand) {
+  this.brand = brand;
+  
+  return {
+    brand: "Generic",
+    os: "Android"
+  };
+}
+
+SmartPhone.prototype.getBrand = function() {
+  return this.brand;
+};
+
+const myPhone = new SmartPhone("Apple");
+
+console.log(myPhone.brand);    // Apple
+console.log(myPhone.getBrand); // Apple
