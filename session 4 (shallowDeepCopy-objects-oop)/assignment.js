@@ -1,33 +1,33 @@
-console.log("######################### Problem - 1 #########################"); 
+console.log("######################### Problem - 1 #########################");
 const registry = {
-    active: [{ id: 1, name: "Alpha" }],
-    archived: []
+  active: [{ id: 1, name: "Alpha" }],
+  archived: []
 };
 
 function cloneAndModify(data) {
-    // Goal: Create a copy so the original registry isn't changed
-    
-    /*
-    Memory state in case of shallow copy :
-    New reference of 'data' and its top level properties is created.
-    But the reference remains the same for the array of 'active' property.
-    Hence the array of 'active' is mutated when changes are made in 'copy'.
-    */
-    //   const copy = { ...data };  // This creates a shallow copy
+  // Goal: Create a copy so the original registry isn't changed
 
-    /*
-    Memory state in case of deep copy :
-    New reference is created of the 'data' object, also new references are made for every property and its value whether it be
-        nested or not.
-    Hence changes made in 'copy' are not reflected in the original 'data' object.
-    */
-    const copy = structuredClone(data);
+  /*
+  Memory state in case of shallow copy :
+  New reference of 'data' and its top level properties is created.
+  But the reference remains the same for the array of 'active' property.
+  Hence the array of 'active' is mutated when changes are made in 'copy'.
+  */
+  //   const copy = { ...data };  // This creates a shallow copy
 
-    copy.active.push({ id: 2, name: "Beta" });
-    copy.active[0].name = "Gamma";
-    copy.version = 2.0;
+  /*
+  Memory state in case of deep copy :
+  New reference is created of the 'data' object, also new references are made for every property and its value whether it be
+      nested or not.
+  Hence changes made in 'copy' are not reflected in the original 'data' object.
+  */
+  const copy = structuredClone(data);
 
-    return copy;
+  copy.active.push({ id: 2, name: "Beta" });
+  copy.active[0].name = "Gamma";
+  copy.version = 2.0;
+
+  return copy;
 }
 
 const newRegistry = cloneAndModify(registry);
@@ -37,12 +37,12 @@ console.log(registry.active[0].name); // Shallow copy : Gamma ---- Deep copy : A
 console.log(registry.version);       // Shallow and Deep copy : undefined
 
 
-console.log("######################### Problem - 2 #########################"); 
+console.log("######################### Problem - 2 #########################");
 function Animal(name) {
   this.name = name;
 }
 
-Animal.prototype.eat = function() {
+Animal.prototype.eat = function () {
   console.log(`${this.name} is eating.`);
 };
 
@@ -63,7 +63,7 @@ We also stole the identity of Dog, which resulted in 'Animal' for myDog.construc
 Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;
 
-Dog.prototype.bark = function() {
+Dog.prototype.bark = function () {
   console.log("Woof!");
 };
 
@@ -74,17 +74,17 @@ const genericAnimal = new Animal("Generic");
 console.log(myDog.constructor.name);
 
 
-console.log("######################### Problem - 3 #########################"); 
+console.log("######################### Problem - 3 #########################");
 function SmartPhone(brand) {
   this.brand = brand;
-  
+
   return {
     brand: "Generic",
     os: "Android"
   };
 }
 
-SmartPhone.prototype.getBrand = function() {
+SmartPhone.prototype.getBrand = function () {
   return this.brand;
 };
 
@@ -109,3 +109,64 @@ After removing the return object
 */
 console.log(myPhone.brand);    // Apple
 console.log(myPhone.getBrand); // [Function (anonymous)]
+
+
+console.log("######################### Problem - 4 #########################");
+/* Scratch implementation of deep copy function */
+function masterClone(obj) {
+  // Handle null and primitives
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  // Functions stay shared
+  if (typeof obj === "function") {
+    return obj;
+  }
+
+  // Handle Arrays
+  if (Array.isArray(obj)) {
+    const copy = [];
+    for (let i = 0; i < obj.length; i++) {
+      copy[i] = masterClone(obj[i]);
+    }
+    return copy;
+  }
+
+  // Handle Objects
+  const copy = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      copy[key] = masterClone(obj[key]);
+    }
+  }
+
+  return copy;
+}
+
+
+console.log("######################### Problem - 5 #########################");
+/* Trace execution of this logic */
+class Counter {
+  static count = 0;
+  count = 10;
+
+  constructor() {
+    Counter.count++;
+  }
+
+  getCount() {
+    return this.count;
+  }
+
+  static getStaticCount() {
+    return this.count;
+  }
+}
+
+const c1 = new Counter();
+const c2 = new Counter();
+
+console.log(c1.getCount());        // 10 
+console.log(Counter.getStaticCount()); //  2
+// console.log(c1.getStaticCount());  //  error 
