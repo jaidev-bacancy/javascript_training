@@ -1,0 +1,65 @@
+ <!-- Append 100 divs to a 'parent' div each having a number from 1 to 100, assign 'green' to 'even', 'orange' to 'odd'
+                    and 'red' to 'prime' -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: content-box;
+            background-color: black;
+        }
+        #parent {
+            display: grid;
+            margin: auto;
+            grid-template-columns: repeat(5, 10%);
+            gap: 20px;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+    </div>
+</body>
+
+<script>
+    const container = document.getElementById('parent');
+
+    const colorMap = {
+        'even': 'green',
+        'odd': 'orange',
+        'prime': 'red'
+    }
+
+    function checkNumber(num) {
+        if (num == 1) { return 'odd'; }
+        for (let i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                return (num % 2 == 0 ? 'even' : 'odd');
+            }
+        }
+
+        return 'prime';
+    }
+
+    for (let i = 1; i <= 100; i++) {
+        let element = document.createElement('div');
+        element.textContent = i;
+        element.style.display = 'inline';
+        element.style.padding = '30px';
+        element.style.backgroundColor = colorMap[checkNumber(i)];
+        element.style.color = 'white';
+        element.style.fontWeight = '700'
+        element.style.textAlign = 'center';
+        element.style.fontSize = '64px';
+        container.append(element);
+    }
+</script>
+
+</html>

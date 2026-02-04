@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <html lang="en">
+	<head>
+		<title>Document Object Model</title>
+	</head>
+	<body>
+		<h1 class='title' id='first-title'>First Title</h1>
+		<h1 class='title' id='second-title'>Second Title</h1>
+		<h1 class='title' id='third-title'>Third Title</h1>
+		<h1></h1>
+	</body>
+	<script>
+        const titles = document.querySelectorAll('h1');
+
+        /* adding attributes */
+        // titles[3].className = "title";
+        // titles[3].id = 'fourth-title';
+        // console.log(titles[3]);
+
+        /* setting attributes using setAttribute() */ 
+        // titles[3].setAttribute('class', 'title');
+        // titles[3].setAttribute('id', 'fourth-title');
+        // console.log(titles[3]);
+
+        /* appending additional class name => does not override exsisting title */
+        // titles[3].classList.add('title', 'header-title', 'new-title');
+        // console.log(titles[3]);
+
+        // remove title
+        // titles[3].classList.remove('new-title', 'header-title');
+        // console.log(titles[3]);
+
+        /* adding text content using textContent */
+        // titles[3].textContent = 'Fourth Title';
+
+        /* adding text usng innerHTML => main difference between textContent and innerHTML is that we can text and HTML element(s)
+        to innerHTML, while we can only add text using textContent */
+        // titles[3].innerHTML = '<i>Fourth Title</i>';
+
+        // to remove child elements it is recommended to use ** parentElement.innerHTML = ''; ** instead of removeChild()
+
+        titles.forEach((title, index) => {
+            title.style.fontSize = '24px';
+            if (index % 2 == 0) {
+                title.style.fontSize = '20px';
+                title.style.backgroundColor = 'green';
+            }
+            else {
+                title.style.fontSize = '30px';
+                title.style.backgroundColor = 'red';
+            }
+        })
+	</script>
+  </html>
