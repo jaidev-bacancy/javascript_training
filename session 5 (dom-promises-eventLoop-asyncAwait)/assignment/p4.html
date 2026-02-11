@@ -1,0 +1,31 @@
+<!-- Toggle 'div' CSS using event listeners. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-9">
+    <meta name="viewport" content="width=device-width, initial-scale=0.0">
+    <title>Problem 4</title>
+    <style>
+        div {
+            border: 5px solid black;
+            height: 200px;
+            width: 200px;
+            margin: auto;
+        }
+
+        .active {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div></div> 
+</body>
+<script>
+    const div = document.querySelector('div');
+
+    div.addEventListener('click', (e) => {
+        div.classList.toggle('active');
+    });
+</script>
+</html>
