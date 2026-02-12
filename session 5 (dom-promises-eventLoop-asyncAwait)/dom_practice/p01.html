@@ -27,25 +27,25 @@
     <div>
         <button id="jsstyle" onclick="js_style()">Style</button>
     </div>
+    <script>
+        // let toggle = false;
+        // const paragraph = document.getElementById('text');
+        // const defaultSize = paragraph.style.fontSize
+        // const defaultColor = paragraph.style.color
+
+        // function js_style() {
+        //     toggle = !toggle
+        //     paragraph.style.color = (toggle ? "red" : defaultColor);
+        //     paragraph.style.fontSize = (toggle ? "20px" : defaultSize);
+        // }
+
+        const paragraph = document.getElementById('text');
+
+        function js_style() {
+            // .classList.toggle() handles the true/false logic for you!
+            paragraph.classList.toggle('highlighted');
+        }
+    </script>
 </body>
-<script>
-    // let toggle = false;
-    // const paragraph = document.getElementById('text');
-    // const defaultSize = paragraph.style.fontSize
-    // const defaultColor = paragraph.style.color
-
-    // function js_style() {
-    //     toggle = !toggle
-    //     paragraph.style.color = (toggle ? "red" : defaultColor);
-    //     paragraph.style.fontSize = (toggle ? "20px" : defaultSize);
-    // }
-
-    const paragraph = document.getElementById('text');
-
-    function js_style() {
-        // .classList.toggle() handles the true/false logic for you!
-        paragraph.classList.toggle('highlighted');
-    }
-</script>
 
 </html>
