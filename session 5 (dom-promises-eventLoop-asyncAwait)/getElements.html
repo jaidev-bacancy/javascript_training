@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html lang="en">
+	<head>
+		<title>Document Object Model</title>
+	</head>
+	<body>
+		<h1 class='title' id='first-title'>First Title</h1>
+		<h1 class='title' id='second-title'>Second Title</h1>
+		<h1 class='title' id='third-title'>Third Title</h1>
+		<h1></h1>
+	</body>
+	<script>
+		/* HTMLCollections do not have all the properties as an array so we iterate it with normal loops */
+		/* get all titles by tag name */
+		// const allTitles = document.getElementsByTagName('h1'); // returns an HTMLCollection
+		// console.log(`Number of titles: ${allTitles.length}`);
+		// for (let i = 0; i < allTitles.length; i++)
+		// {
+		// 	console.log(allTitles[i]);
+		// }	
+
+		/* get all titles by class name */
+		// const allTitles = document.getElementsByClassName('title');
+		// console.log(`Number of titles: ${allTitles.length}`);
+		// for (let i = 0; i < allTitles.length; i++)
+		// {
+		// 	console.log(allTitles[i]);
+		// }	
+
+		/* get an element by its id */
+		// const firstTitle = document.getElementById('first-title');
+		// console.log(firstTitle);
+
+		/* get an element by querySelector() => the argument to it can 'class name', 'id' or 'tag name'.
+		This method returns the first found element */
+		// const allTitles = document.querySelector('h1');
+		// const firsTitle = document.querySelector('#first-title');
+		// const allTitles = document.querySelector('.title');
+
+		/* get elements by querySelectorAll() => returns a NodeList of all elements with given 'tag name', 'class name' or 'id'. */
+		/* NodeList supporst array methods, hence forEach can be used for iteration */
+		// const allTitles = document.querySelectorAll('h1');
+		// allTitles.forEach((element) => console.log(element));
+
+		const allTitles = document.querySelectorAll('.title');
+		allTitles.forEach((element) => console.log(element));
+	</script>
+  </html>

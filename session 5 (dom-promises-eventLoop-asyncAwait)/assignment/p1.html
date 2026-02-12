@@ -1,0 +1,28 @@
+<!-- Change the text of paragraph on button click to reveal a secret message -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 1</title>
+</head>
+
+<body>
+    <div class="container">
+        <p id="secret-message">
+            Some initial text
+        </p>
+        <button type="button" id="reveal">Reveal</button>
+    </div>
+    <script>
+        const paragraph = document.getElementById('secret-message');
+        const revealButton = document.getElementById('reveal');
+
+        revealButton.addEventListener('click', () => {
+            paragraph.textContent = "You found the secret message!";
+        });
+    </script>
+</body>
+
+</html>

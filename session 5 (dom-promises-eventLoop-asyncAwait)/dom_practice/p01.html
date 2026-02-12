@@ -1,0 +1,51 @@
+<!-- Using DOM manipulated paragraph style and size when button is clicked -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>JS DOM paragraph style</title>
+    <style>
+        /* Default state */
+        /*
+        #text {
+            color: black;
+            font-size: 16px;
+        }
+        */
+
+        /* The "active" state */
+        #text.highlighted {
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id='text'>JavaScript Exercises - w3resource</p>
+    <div>
+        <button id="jsstyle" onclick="js_style()">Style</button>
+    </div>
+    <script>
+        // let toggle = false;
+        // const paragraph = document.getElementById('text');
+        // const defaultSize = paragraph.style.fontSize
+        // const defaultColor = paragraph.style.color
+
+        // function js_style() {
+        //     toggle = !toggle
+        //     paragraph.style.color = (toggle ? "red" : defaultColor);
+        //     paragraph.style.fontSize = (toggle ? "20px" : defaultSize);
+        // }
+
+        const paragraph = document.getElementById('text');
+
+        function js_style() {
+            // .classList.toggle() handles the true/false logic for you!
+            paragraph.classList.toggle('highlighted');
+        }
+    </script>
+</body>
+
+</html>
